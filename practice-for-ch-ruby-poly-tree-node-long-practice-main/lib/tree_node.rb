@@ -1,3 +1,5 @@
+require "byebug"
+
 class PolyTreeNode
     attr_reader :value,:parent,:children
     def initialize(param)
@@ -39,9 +41,10 @@ class PolyTreeNode
     def bfs(target)
         queue = [self]
         until queue.empty?
-            x=queue.shift
+            x = queue.shift
+            debugger
             return self if x.value==target
-            queue<<x.children
+            queue += x.children
         end
         nil
     end
