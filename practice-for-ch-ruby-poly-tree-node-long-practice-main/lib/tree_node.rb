@@ -42,8 +42,7 @@ class PolyTreeNode
         queue = [self]
         until queue.empty?
             x = queue.shift
-            debugger
-            return self if x.value==target
+            return x if x.value==target
             queue += x.children
         end
         nil
