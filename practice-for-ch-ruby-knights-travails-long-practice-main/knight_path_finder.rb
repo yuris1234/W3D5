@@ -1,3 +1,5 @@
+require "byebug"
+
 class KnightPathFinder
     attr_reader :pos, :considered_positions, :initial_pos
 
@@ -12,12 +14,13 @@ class KnightPathFinder
 
     def self.valid_pos(pos,move)
         pos = self.new_pos(pos,move)
-        return true if (0..7).include?(pos[0]) && (0..7).include?(pos[1]) && !considered_positions?include(pos)
+        return true if (0..7).include?(pos[0]) && (0..7).include?(pos[1])
         false
     end
     def self.new_pos(pos, move)
         pos[0]=pos[0]+move[0]
         pos[1]=pos[1]+move[1]
+        p pos
         return pos 
     end
 
@@ -31,3 +34,6 @@ class KnightPathFinder
 
     end
 end
+
+# k = KnightPathFinder.new([0,0])
+p KnightPathFinder.valid_moves([0,0])
