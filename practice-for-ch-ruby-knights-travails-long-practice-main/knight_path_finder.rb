@@ -27,13 +27,19 @@ class KnightPathFinder
     def initialize(pos)
         @pos = pos
         @considered_positions = [pos]
-        @initial_pos = self.root_node
+        # @root_node =PolyTreeNode.new(pos)
     end
 
     def new_move_positions(pos)
-
+        valid = KnightPathFinder.valid_moves(pos).reject {|ele| @considered_positions.include?(ele)}
+        @considered_positions+=valid
+        valid
     end
+
+
 end
 
 # k = KnightPathFinder.new([0,0])
-p KnightPathFinder.valid_moves([0,0])
+# p KnightPathFinder.valid_moves([0,0])
+# p KnightPathFinder.valid_moves([7,7])
+# p k.new_move_positions([-1,7])
