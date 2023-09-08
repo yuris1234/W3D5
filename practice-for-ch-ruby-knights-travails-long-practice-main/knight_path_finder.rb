@@ -4,11 +4,9 @@ class KnightPathFinder
     attr_reader :pos, :considered_positions, :initial_pos
 
     def self.valid_moves(pos)
-        temp=pos
         result=[]
         valid =[[1,2],[2,1],[-2,1],[1,-2],[-2,-1],[-1,-2],[2,-1],[-1,2]]
         valid.each do |sub|
-            pos=temp
             result<<self.new_pos(pos, sub) if self.valid_pos(pos,sub)
         end
         result
