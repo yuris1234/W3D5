@@ -1,4 +1,5 @@
 require "byebug"
+require_relative "./poly_tree_node.rb"
 
 class KnightPathFinder
     attr_reader :pos, :considered_positions, :initial_pos
@@ -17,6 +18,7 @@ class KnightPathFinder
         return true if (0..7).include?(pos[0]) && (0..7).include?(pos[1])
         false
     end
+
     def self.new_pos(pos, move)
         new_pos=[]
         new_pos<<pos[0]+move[0]
@@ -25,9 +27,9 @@ class KnightPathFinder
     end
 
     def initialize(pos)
-        @pos = pos
+        @end_pos = pos
         @considered_positions = [pos]
-        # @root_node =PolyTreeNode.new(pos)
+        @root_node = PolyTreeNode.new(pos)
     end
 
     def new_move_positions(pos)
@@ -36,6 +38,9 @@ class KnightPathFinder
         valid
     end
 
+    def build_move_tree
+        
+    end
 
 end
 
