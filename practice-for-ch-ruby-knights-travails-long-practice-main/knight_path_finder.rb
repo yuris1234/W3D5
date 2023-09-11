@@ -38,26 +38,27 @@ class KnightPathFinder
         valid
     end
 
-    def build_move_tree(target)
-        possible_nodes=[]
+    def build_move_tree
         queue=[@root_node]
-        target_node=PolyTreeNode.new(target)
-        new_moves=new_move_positions(@start_pos)
-        new_moves.each do |node|
-            possible_nodes<<PolyTreeNode.new(node)
-        end
         until queue.empty?
-            #does node.value==target?
-            current_node=queue[0]
-            if current_node==target
-                return current_node.
-                #
-                current_node.add_child
+            deleted_node=queue.shift
+            possible_moves=new_move_positions(deleted_node.value)
+            nodes=[]
+            possible_moves.each do |move|
+                node=PolyTreeNode.new(move)
+                node.parent=deleted_node
+                nodes<<node
+            end
+            queue+=nodes
+            # p queue
+            # puts
+        end
     end
 
 end
 
-# k = KnightPathFinder.new([0,0])
+k = KnightPathFinder.new([0,0])
 # p KnightPathFinder.valid_moves([0,0])
 # p KnightPathFinder.valid_moves([7,7])
 # p k.new_move_positions([-1,7])
+k.build_move_tree
